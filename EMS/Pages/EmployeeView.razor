@@ -1,0 +1,89 @@
+﻿@page "/employeesview"
+@using EMS.Data.DataHandeling;
+@using EMS.Data.MockData;
+@using EMS.Models;
+    using EMS.Data.MockData;
+@inject NavigationManager NavigationManager;
+
+<PageTitle>Employee Overview</PageTitle>
+
+<h3>EmployeeView</h3>
+
+<div class="row mb-4">
+    <div class="col-sm-6">
+        <button type="button" class="btn btn-primary" @onclick="CreateEmployee">New Employee</button>
+    </div>
+</div>
+
+<table class="table table-striped table-bordered table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Job Title</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Deleted</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in listEmployees)
+        {
+            <tr>
+                <td>@employee.Id</td>
+                <td>@employee.FirstName</td>
+                <td>@employee.LastName</td>
+                <td>@employee.JobTitel</td>
+                <td>@employee.Department</td>
+                <td>@employee.Salary</td>
+                <td>@employee.Deleted</td>
+                <td>@employee.Username</td>
+                <td>@employee.Password</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="(() => EditEmployee(employee.Id))">
+                        <i class="oi oi-pencil"></i>
+                    </button>
+@*                    <button class="btn btn-danger"
+                        data-bs-toggle="modal"
+                        data-bs-target="#deleteModal"
+                        @onclick="(() => currentGame = employee)">
+                        <i class="oi oi-x"></i>
+                    </button>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<EmployeeModel> listEmployees = new();
+    List<JobTitleModel> listJobTitle = new();
+    List<DepartmentModel> listDepartment = new();
+
+    //EmployeeRepositoryMockData employeeRepositoryMockData = new();
+
+    DataEmployeeMock dataEmployee = new();
+
+    protected override async void OnInitialized()
+    {
+        listDepartment = await DataSideTables.GetDataDepartment();
+        listJobTitle = await DataSideTables.GetDataJobTitle();
+        listEmployees = await dataEmployee.GetAllEmployees();
+        //listEmployees = await employeeRepositoryMockData.GetEmployees();
+    }
+
+    private void CreateEmployee()
+    {
+        NavigationManager.NavigateTo("/employee");
+    }
+
+    private void EditEmployee(int id)
+    {
+        NavigationManager.NavigateTo($"/employee/{id}");
+    }
+
+}
