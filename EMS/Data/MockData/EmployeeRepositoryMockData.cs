@@ -29,7 +29,7 @@ namespace EMS.Data.MockData
                     {
                         Id = 1,
                         FirstName = "Mads",
-                        LastName = "Nielsen",
+                        LastName = "Madsen",
                         JobTitel = 1,
                         Department = 3,
                         Salary = 11,

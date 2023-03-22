@@ -5,7 +5,9 @@
 @using EMS.Services;
 
 @inject NavigationManager NavigationManager;
-@inject IEmployeeServices EmployeeServices
+@inject IEmployeeServices EmployeeServices;
+@inject IDepartmentServices DepartmentServices;
+@inject IJobTitleServices JobTitleServices;
 
 <PageTitle>Employee Overview</PageTitle>
 
@@ -101,9 +103,12 @@ else
 
     protected override async void OnInitialized()
     {
-        listDepartment = await DataSideTables.GetDataDepartment();
-        listJobTitle = await DataSideTables.GetDataJobTitle();
+        //listDepartment = await DataSideTables.GetDataDepartment();
+        //listJobTitle = await DataSideTables.GetDataJobTitle();
+
         listEmployees = await EmployeeServices.ShowEmployees();
+        listDepartment = await DepartmentServices.ShowDepartments();
+        listJobTitle = await JobTitleServices.ShowJobTitles();
     }
 
     private void DisabledEmployees()

@@ -3,12 +3,12 @@ using EMS.Models;
 
 namespace EMS.Data
 {
-    public interface IJobTitle
+    public interface IJobTitleRepository
     {
         Task<List<JobTitleModel>> GetData();
     }
 
-    public interface IDepartment
+    public interface IDepartmentRepository
     {
         Task<List<DepartmentModel>> GetData();
     }

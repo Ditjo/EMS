@@ -2,7 +2,7 @@
 
 namespace EMS.Data.MockData
 {
-    public class JobTitleRepositoryMockData : IJobTitle
+    public class JobTitleRepositoryMockData : IJobTitleRepository
     {
         public async Task<List<JobTitleModel>> GetData()
         {

@@ -10,9 +10,26 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 //builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
-//builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+if (false)
+{
+    //DataBase Data Scops
+    //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+    //builder.Services.AddScoped<IJobTitleRepository, JobTitleRepository>();
+}
+else
+{
+    //MockData Scops
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
+    builder.Services.AddScoped<IDepartmentRepository, DepartmentRepositoryMockData>();
+    builder.Services.AddScoped<IJobTitleRepository, JobTitleRepositoryMockData>();
+}
+
+//Services Scops
 builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
+builder.Services.AddScoped<IDepartmentServices, DepartmentServices>();
+builder.Services.AddScoped<IJobTitleServices, JobTitleServices>();
 
 var app = builder.Build();
 

@@ -6,6 +6,8 @@
 @using EMS.Services;
 @inject NavigationManager NavigationManager
 @inject IEmployeeServices EmployeeServices
+@inject IDepartmentServices DepartmentServices;
+@inject IJobTitleServices JobTitleServices;
 
 <PageTitle>Edit @title</PageTitle>
 <h1>Edit Employee:</h1><br/>
@@ -82,8 +84,11 @@
 
     protected override async void OnInitialized()
     {
-        ListDepartment = await DataSideTables.GetDataDepartment();
-        ListJobTitle = await DataSideTables.GetDataJobTitle();
+        //ListDepartment = await DataSideTables.GetDataDepartment();
+        //ListJobTitle = await DataSideTables.GetDataJobTitle();
+
+        ListDepartment = await DepartmentServices.ShowDepartments();
+        ListJobTitle = await JobTitleServices.ShowJobTitles();
     }
 
     protected override void OnParametersSet()
