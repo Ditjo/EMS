@@ -16,7 +16,7 @@ namespace EMS.Models
         [Required]
         public int Department { get; set; }
         [Required]
-        public double Salary { get; set; }
+        public decimal Salary { get; set; }
         public bool Deleted { get; set; }
         [Required]
         [StringLength(8)]

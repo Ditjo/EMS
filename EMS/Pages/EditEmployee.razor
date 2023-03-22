@@ -85,6 +85,7 @@
     {
         ListDepartment = await DepartmentServices.ShowDepartments();
         ListJobTitle = await JobTitleServices.ShowJobTitles();
+        await InvokeAsync(() => StateHasChanged());
     }
 
     protected override void OnParametersSet()

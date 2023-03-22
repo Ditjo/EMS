@@ -1,6 +1,8 @@
 using EMS.Data;
+using EMS.Data.DB_Data_Ado;
 using EMS.Data.MockData;
 using EMS.Services;
+using EMS.Settings;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -9,18 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-
-if (false)
+builder.Services.Configure<ConnectionSetting>(builder.Configuration.GetSection("ConnectionSetting"));
+if (false) //True: Database / False: MockData
 {
     //DataBase Data Scops
-    //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-    //builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-    //builder.Services.AddScoped<IJobTitleRepository, JobTitleRepository>();
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+    builder.Services.AddScoped<IJobTitleRepository, JobTitleRepository>();
 }
 else
 {
     //MockData Scops
-    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+    //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
     builder.Services.AddScoped<IDepartmentRepository, DepartmentRepositoryMockData>();
     builder.Services.AddScoped<IJobTitleRepository, JobTitleRepositoryMockData>();
 }

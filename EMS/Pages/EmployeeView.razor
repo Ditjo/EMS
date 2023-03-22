@@ -10,7 +10,7 @@
 
 <PageTitle>Employee Overview</PageTitle>
 
-<h3>EmployeeView</h3>
+<h3>@title Employees</h3>
 
 <div class="row mb-4">
     <div class="col-sm-6">
@@ -98,6 +98,8 @@ else
 
     private string buttonTitle = "Disabled";
 
+    private string title = "Enabled";
+
     private bool ShowDisabledEmployees = false;
 
     protected override async void OnInitialized()
@@ -105,12 +107,15 @@ else
         listEmployees = await EmployeeServices.ShowEmployees();
         listDepartment = await DepartmentServices.ShowDepartments();
         listJobTitle = await JobTitleServices.ShowJobTitles();
+        await InvokeAsync(() => StateHasChanged());
     }
 
-    private void DisabledEmployees()
+    private async void DisabledEmployees()
     {
         ShowDisabledEmployees = !ShowDisabledEmployees;//Move to new method
         buttonTitle = (ShowDisabledEmployees == false) ? "Disabled" : "Enabled";
+        title = (ShowDisabledEmployees == true) ? "Disabled" : "Enabled";
+        listEmployees = await EmployeeServices.ShowEmployees();
     }
 
     private void CreateEmployee()
@@ -123,18 +128,22 @@ else
         NavigationManager.NavigateTo($"/employee/{id}");
     }
 
-    private void EnableDisableEmployee(EmployeeModel employee)
+    private async void EnableDisableEmployee(EmployeeModel employee)
     {
 
         employee.Deleted = !employee.Deleted;
         EmployeeServices.UpdateEmployee(employee);
+        listEmployees = await EmployeeServices.ShowEmployees();
+        await InvokeAsync(() => StateHasChanged());
     }
 
-    private void OnDeleteModalClose(bool accepted)
+    private async void OnDeleteModalClose(bool accepted)
     {
         if (accepted)
         {
             EmployeeServices.DeleteEmployee(selectedEmployee!.Id);
+            listEmployees = await EmployeeServices.ShowEmployees();
+            await InvokeAsync(() => StateHasChanged());
         }
     }
 
