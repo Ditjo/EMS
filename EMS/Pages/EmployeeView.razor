@@ -102,9 +102,6 @@ else
 
     protected override async void OnInitialized()
     {
-        //listDepartment = await DataSideTables.GetDataDepartment();
-        //listJobTitle = await DataSideTables.GetDataJobTitle();
-
         listEmployees = await EmployeeServices.ShowEmployees();
         listDepartment = await DepartmentServices.ShowDepartments();
         listJobTitle = await JobTitleServices.ShowJobTitles();
@@ -114,8 +111,6 @@ else
     {
         ShowDisabledEmployees = !ShowDisabledEmployees;//Move to new method
         buttonTitle = (ShowDisabledEmployees == false) ? "Disabled" : "Enabled";
-
-        //listEmployees = await EmployeeServices.ShowEmployees();
     }
 
     private void CreateEmployee()
@@ -133,7 +128,6 @@ else
 
         employee.Deleted = !employee.Deleted;
         EmployeeServices.UpdateEmployee(employee);
-        //listEmployees = await EmployeeServices.ShowEmployees();
     }
 
     private void OnDeleteModalClose(bool accepted)
@@ -141,7 +135,6 @@ else
         if (accepted)
         {
             EmployeeServices.DeleteEmployee(selectedEmployee!.Id);
-            //listEmployees = await EmployeeServices.ShowEmployees();
         }
     }
 

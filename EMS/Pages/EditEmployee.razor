@@ -83,9 +83,6 @@
 
     protected override async void OnInitialized()
     {
-        //ListDepartment = await DataSideTables.GetDataDepartment();
-        //ListJobTitle = await DataSideTables.GetDataJobTitle();
-
         ListDepartment = await DepartmentServices.ShowDepartments();
         ListJobTitle = await JobTitleServices.ShowJobTitles();
     }
