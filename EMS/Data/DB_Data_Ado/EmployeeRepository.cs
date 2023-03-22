@@ -53,7 +53,6 @@ namespace EMS.Data.DB_Data_Ado
             ListEmployee = new();
             using (var connect = new SqlConnection(_connection.SQLString))
             {
-                
                 connect.Open();
                 SqlCommand cmd = new SqlCommand("GetAllEmployees", connect);
                 cmd.CommandType = CommandType.StoredProcedure;

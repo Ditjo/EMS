@@ -22,8 +22,7 @@ if (false) //True: Database / False: MockData
 else
 {
     //MockData Scops
-    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-    //builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
+    builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
     builder.Services.AddScoped<IDepartmentRepository, DepartmentRepositoryMockData>();
     builder.Services.AddScoped<IJobTitleRepository, JobTitleRepositoryMockData>();
 }
