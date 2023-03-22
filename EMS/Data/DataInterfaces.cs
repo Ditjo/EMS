@@ -3,11 +3,6 @@ using EMS.Models;
 
 namespace EMS.Data
 {
-    public interface IEmployee
-    {
-        Task<List<EmployeeModel>> GetEmployees();
-    }
-
     public interface IJobTitle
     {
         Task<List<JobTitleModel>> GetData();
@@ -18,7 +13,7 @@ namespace EMS.Data
         Task<List<DepartmentModel>> GetData();
     }
 
-    public interface IDataHandling
+    public interface IEmployeeRepository
     {
         public Task<List<EmployeeModel>> GetAllEmployees();
 

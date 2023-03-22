@@ -3,32 +3,38 @@ using EMS.Models;
 
 namespace EMS.Data.DataHandeling
 {
-    public class DataEmployeeMock
-    {
-        EmployeeRepositoryMockData employeeRepositoryMockData = new();
-        public async Task<List<EmployeeModel>> GetAllEmployees()
-        {
-            return await employeeRepositoryMockData.GetEmployees();
-        }
+    //public class DataEmployeeMock : IEmployeeRepository
+    //{
+    //    EmployeeRepositoryMockData employeeRepositoryMockData = new();
 
-        public EmployeeModel GetEmployee(int Id, List<EmployeeModel> list)
-        {
-            return list.Find(x => x.Id == Id) ?? throw new Exception("Could not find Employee");
-        }
+    //    private List<EmployeeModel> listEmployees;
 
-        public void AddNewEmployee(EmployeeModel employee)
-        {
+    //    public async Task<List<EmployeeModel>> GetAllEmployees()
+    //    {
+    //        //return await employeeRepositoryMockData.GetEmployees();
+    //        listEmployees = await employeeRepositoryMockData.GetEmployees();
+    //        return listEmployees;
+    //    }
 
-        }
+    //    public EmployeeModel GetEmployee(int Id/*, List<EmployeeModel> list*/)
+    //    {
+    //        return listEmployees.Find(x => x.Id == Id) ?? throw new Exception("Could not find Employee");
+    //    }
 
-        public void UpdateEmployee(EmployeeModel Updatedemployee)
-        {
+    //    public void AddNewEmployee(EmployeeModel employee)
+    //    {
+    //        employee.Id = listEmployees.Max(x => x.Id) + 1;
+    //        listEmployees.Add(employee);
+    //    }
 
-        }
+    //    public void UpdateEmployee(EmployeeModel Updatedemployee)
+    //    {
 
-        public void DeleteEmployee(int Id)
-        {
+    //    }
 
-        }
-    }
+    //    public void DeleteEmployee(int Id)
+    //    {
+
+    //    }
+    //}
 }

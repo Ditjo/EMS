@@ -1,4 +1,6 @@
 using EMS.Data;
+using EMS.Data.MockData;
+using EMS.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -8,6 +10,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 //builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryMockData>();
+//builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IEmployeeServices, EmployeeServices>();
 
 var app = builder.Build();
 
